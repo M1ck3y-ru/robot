@@ -30,10 +30,8 @@ Installer l'IDE Thonny :
 En etant dans le fichier "main.py" lancer à l'aide du bouton en haut a gauche en vert ```
 ```bash
 
-Au cas ou : 
+Fichier "moto.py" : 
 ```bash
-Autre choses
-```
 ## 🚀 A PROPOS DE NOUS
 Nous sommes trois développeurs débutant dans la Programation en MicroPython.
 
