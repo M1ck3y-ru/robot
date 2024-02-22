@@ -24,14 +24,12 @@ Quel est le type de l'interpreteur de MicroPython ESP32 :
 
 ## 📟 Déploiement
 
-Comment run le projet ?
+Installer l'IDE Thonny :
 
 ```bash
-https://thonny.org/
-```
+En etant dans le fichier "main.py" lancer à l'aide du bouton en haut a gauche en vert ```
 ```bash
-python3
-```
+
 Au cas ou : 
 ```bash
 Autre choses
