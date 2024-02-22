@@ -1,80 +1,61 @@
 from machine import Pin, PWM
-import machine
 import time
 
-trig_pin = Pin(4, Pin.OUT)
-echo_pin = Pin(5, Pin.IN)
+# Définir les broches pour le contrôle des moteurs
+pin_motor_left_forward = Pin(16, Pin.OUT)
+pin_motor_left_backward = Pin(17, Pin.OUT)
+pin_motor_right_forward = Pin(22, Pin.OUT)
+pin_motor_right_backward = Pin(23, Pin.OUT)
 
-# Vitesse du son dans l'air
-SOUND_SPEED = 340
-TRIG_PULSE_DURATION_US = 10
+# Initialiser les broches pour le contrôle PWM (pour ajuster la vitesse des moteurs)
+pwm_motor_left = PWM(Pin(18), freq=5000, duty=0)
+pwm_motor_right = PWM(Pin(21), freq=5000, duty=0)
 
-ultrason_duration = 0
-distance_cm = 0
 
-motor1_in1 = Pin(16, Pin.OUT)
-motor1_in2 = Pin(17, Pin.OUT)
-motor2_in1 = Pin(19, Pin.OUT)
-motor2_in2 = Pin(21, Pin.OUT)
+    
+    
 
-motor1_pwm = PWM(Pin(22))
-motor2_pwm = PWM(Pin(23))
 
-def setup():
-    global motor1_pwm, motor2_pwm
-    motor1_pwm.freq(1000)
-    motor2_pwm.freq(1000)
-    motor1_pwm.duty(0)
-    motor2_pwm.duty(0)
+def avancer(vitesse):
+    pwm_motor_left.duty(vitesse) # permet de donner l'impulsion (fréquence)
+    pwm_motor_right.duty(vitesse) # permet de donner l'impulsion (fréquence)
+    pin_motor_left_forward.on()  # dit que le moteur gauche peut tourner
+    pin_motor_left_backward.off() #dit que le moteur gauche ne peut pas tourner dans se sens
+    pin_motor_right_forward.on() # dit que le moteur droit peut tourner 
+    pin_motor_right_backward.off() #dit que le moteur droit ne peut pas tourner dans se sens
 
-def move_forward():
-    motor1_in1.on()
-    motor1_in2.off()
-    motor2_in1.on()
-    motor2_in2.off()
-    motor1_pwm.duty(1023)
-    motor2_pwm.duty(1023)
 
-def move_backward():
-    motor1_in1.off()
-    motor1_in2.on()
-    motor2_in1.off()
-    motor2_in2.on()
-    motor1_pwm.duty(1023)
-    motor2_pwm.duty(1023)
+def reculer(vitesse):
+    pwm_motor_left.duty(vitesse)
+    pwm_motor_right.duty(vitesse)
+    pin_motor_left_forward.off()
+    pin_motor_left_backward.on()
+    pin_motor_right_forward.off()
+    pin_motor_right_backward.on()
 
-def stop_motors():
-    motor1_pwm.duty(0)
-    motor2_pwm.duty(0)
+def tourner_gauche(vitesse):
+    
+    pwm_motor_left.duty(vitesse) # permet de donner l'impulsion (fréquence)
+    pwm_motor_right.duty(vitesse) # permet de donner l'impulsion (fréquence)
+    pin_motor_left_forward.off()
+    pin_motor_left_backward.on()
+    pin_motor_right_forward.on()
+    pin_motor_right_backward.off()
 
-def loop():
-    global ultrason_duration, distance_cm
-    while True:
-        # Préparation du signal
-        print("préparation du siginal")
-        trig_pin.off()
-        time.sleep_us(2)
-        # Création d'une impulsion de 10 µs
-        trig_pin.on()
-        time.sleep_us(TRIG_PULSE_DURATION_US)
-        trig_pin.off()
-        print("impulsion crée")
+def tourner_droite(vitesse):
+    
+    pwm_motor_left.duty(vitesse) # permet de donner l'impulsion (fréquence)
+    pwm_motor_right.duty(vitesse) # permet de donner l'impulsion (fréquence)
+    pin_motor_left_forward.on()
+    pin_motor_left_backward.off()
+    pin_motor_right_forward.off()
+    pin_motor_right_backward.on()
 
-        # Mesure de la durée de propagation de l'onde (en µs)
-        ultrason_duration = machine.time_pulse_us(echo_pin, 1)
-        print("impulsion en cours")
-
-        # Calcul de la distance
-        distance_cm = ultrason_duration * SOUND_SPEED / 2 * 0.0001
-
-        # Affichage de la distance
-        print("Distance (cm):", distance_cm)
-
-        # Contrôle des moteurs en fonction de la distance
-        if distance_cm < 10:  # Si la distance est inférieure à 10 cm
-            stop_motors()
-        else:
-            move_forward()
-
-        time.sleep(1)  # Attendre 1 seconde avant la prochaine mesure
-#
+def arreter():
+    
+    pwm_motor_left.duty(0)
+    pwm_motor_right.duty(0)
+    pin_motor_left_forward.off()
+    pin_motor_left_backward.off()
+    pin_motor_right_forward.off()
+    pin_motor_right_backward.off(
