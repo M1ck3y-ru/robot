@@ -15,7 +15,7 @@ Le code sera optimisé et commenté en respectant la PEP20.
 
 - [@Nils JAUDON](https://ytrack.learn.ynov.com/git/jnils)
 
-- [@Mehdi FANDI]([https://ytrack.learn.ynov.com/git/jnils](https://ytrack.learn.ynov.com/git/fmehdi))
+- [@Mehdi FANDI]([https://ytrack.learn.ynov.com/git/jnils](https://ytrack.learn.ynov.com/git/fmehdi)
 
   
 ## ❓ Informations
@@ -24,14 +24,15 @@ Quel est le type de l'interpreteur de MicroPython ESP32 :
 
 ## 📟 Déploiement
 
-Installer l'IDE Thonny :
+Installer l'IDE Thonny : https://thonny.org/
 
-```bash
-En etant dans le fichier "main.py" lancer à l'aide du bouton en haut a gauche en vert ```
-```bash
+En etant dans le fichier "main.py" lancer à l'aide du bouton en haut a gauche en vert.
+Installer égament le driver pour initiliser la carte "ESP32" https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers?tab=downloads
 
-Fichier "motor.py" : 
-```bash
+
+Fichier "motor.py" :
+C'est notre librerie pour le bon fonctionnement des moteurs, nous appelons cette librerie dans notre fichier pour tester le bon fonctionnement des roues qui avance, recule troune a droite ou a gauche.
+
 ## 🚀 A PROPOS DE NOUS
 Nous sommes trois développeurs débutant dans la Programation en MicroPython.
 
