@@ -30,7 +30,7 @@ En etant dans le fichier "main.py" lancer à l'aide du bouton en haut a gauche e
 Installer égament le driver pour initiliser la carte "ESP32" https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers?tab=downloads
 
 
-Fichier "motor.py" :
+Fichier "engine.py" :
 C'est notre librerie pour le bon fonctionnement des moteurs, nous appelons cette librerie dans notre fichier pour tester le bon fonctionnement des roues qui avance, recule troune a droite ou a gauche.
 
 ## 🚀 A PROPOS DE NOUS
